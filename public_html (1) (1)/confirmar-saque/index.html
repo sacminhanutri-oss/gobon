@@ -1,444 +1,476 @@
 <!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TTPay Amigos</title>
+    <meta name="description" content="TTPay Amigos — Demonstração">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>TTPay Amigos</title>
-<meta name="description" content="TTPay Amigos - Programa de Recompensas">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-<script async="" src="https://www.clarity.ms/tag/vfearf9cw4"></script><script src="https://cdn.tailwindcss.com"></script>
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    pink: '#FF3B6C',
-                    foreground: '#000000',
-                    'muted-foreground': '#6b7280',
-                    background: '#F5F5F5',
-                }
+        body {
+            background: #F5F5F5;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .5;
             }
         }
-    }
-</script>
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes notifSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes notifSlideUp {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+        }
+
+        .text-pink {
+            color: #FF3B6C;
+        }
+
+        .bg-pink {
+            background-color: #FF3B6C;
+        }
+
+        .border-pink {
+            border-color: #FF3B6C;
+        }
+
+        .text-foreground {
+            color: #1a1a2e;
+        }
+
+        .bg-foreground {
+            background-color: #000000;
+        }
+
+        .text-muted-foreground {
+            color: #6b7280;
+        }
+
+        .shadow-pink {
+            box-shadow: 0 4px 14px rgba(255, 59, 108, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+    </style>
+
 <style>
-    * {
-        font-family: 'Inter', sans-serif;
-    }
-
-    body {
-        background: #F5F5F5;
-    }
-
-    @keyframes pulse {
-
-        0%,
-        100% {
-            opacity: 1;
-        }
-
-        50% {
-            opacity: .5;
-        }
-    }
-
-    .animate-pulse {
-        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-
-    @keyframes notifSlideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-20px) scale(0.95);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-    }
-
-    @keyframes notifSlideUp {
-        from {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        to {
-            opacity: 0;
-            transform: translateY(-20px) scale(0.95);
-        }
-    }
-
-    .text-pink {
-        color: #FF3B6C;
-    }
-
-    .bg-pink {
-        background-color: #FF3B6C;
-    }
-
-    .border-pink {
-        border-color: #FF3B6C;
-    }
-
-    .text-foreground {
-        color: #1a1a2e;
-    }
-
-    .bg-foreground {
-        background-color: #000000;
-    }
-
-    .text-muted-foreground {
-        color: #6b7280;
-    }
-
-    .shadow-pink {
-        box-shadow: 0 4px 14px rgba(255, 59, 108, 0.3);
-    }
-
-    button:active {
-        transform: scale(0.98);
-    }
+*{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+html,body{margin:0;padding:0;background:#f5f5f5;color:#1a1a2e}
+body{min-height:100vh}
+button{font:inherit;border:0;cursor:pointer}
+button:active{transform:scale(.98)}
+img{max-width:100%}
+.bg-\[\#F5F5F5\]{background:#f5f5f5}.bg-white{background:#fff}.bg-foreground{background:#000}
+.bg-\[\#F9FAFB\]{background:#f9fafb}.bg-\[\#F0F0F0\]{background:#f0f0f0}
+.bg-\[\#E5E7EB\]{background:#e5e7eb}.bg-pink{background:#ff3b6c}
+.text-white{color:#fff}.text-pink{color:#ff3b6c}.text-foreground{color:#1a1a2e}
+.text-muted-foreground{color:#6b7280}.text-\[\#10B981\]{color:#10b981}
+.text-\[\#6b7280\]{color:#6b7280}.text-\[9px\]{font-size:9px}.text-\[10px\]{font-size:10px}
+.text-\[11px\]{font-size:11px}.text-\[12px\]{font-size:12px}.text-\[13px\]{font-size:13px}
+.text-\[14px\]{font-size:14px}.text-\[15px\]{font-size:15px}.text-\[16px\]{font-size:16px}
+.text-\[17px\]{font-size:17px}.text-\[28px\]{font-size:28px}.text-\[38px\]{font-size:38px}
+.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.font-semibold{font-weight:600}
+.font-bold{font-weight:700}.font-extrabold{font-weight:800}.italic{font-style:italic}
+.uppercase{text-transform:uppercase}.tracking-wide{letter-spacing:.025em}.tracking-wider{letter-spacing:.05em}
+.tracking-tight{letter-spacing:-.025em}.leading-tight{line-height:1.25}.leading-relaxed{line-height:1.625}
+.leading-snug{line-height:1.375}.text-center{text-align:center}.cursor-pointer{cursor:pointer}
+.flex{display:flex}.flex-col{flex-direction:column}.items-center{align-items:center}
+.items-start{align-items:flex-start}.justify-center{justify-content:center}.justify-between{justify-content:space-between}
+.flex-1{flex:1 1 0%}.min-w-0{min-width:0}.w-full{width:100%}.w-6{width:24px}.w-[20px]{width:20px}
+.w-[22px]{width:22px}.w-[32px]{width:32px}.w-[40px]{width:40px}.h-[2px]{height:2px}.h-[20px]{height:20px}
+.h-[32px]{height:32px}.h-[40px]{height:40px}.h-[48px]{height:48px}.h-[56px]{height:56px}
+.h-\[56px\]{height:56px}.min-h-screen{min-height:100vh}.max-w-\[430px\]{max-width:430px}
+.mx-auto{margin-left:auto;margin-right:auto}.mx-4{margin-left:16px;margin-right:16px}.mx-5{margin-left:20px;margin-right:20px}
+.mt-1{margin-top:4px}.mt-1\.5{margin-top:6px}.mt-2{margin-top:8px}.mt-3{margin-top:12px}.mt-4{margin-top:16px}
+.mb-1{margin-bottom:4px}.mb-3{margin-bottom:12px}.mb-4{margin-bottom:16px}.my-4{margin-top:16px;margin-bottom:16px}
+.ml-2{margin-left:8px}.mr-0{margin-right:0}.mr-1{margin-right:4px}
+.p-3{padding:12px}.p-4{padding:16px}.p-5{padding:20px}.px-4{padding-left:16px;padding-right:16px}
+.px-5{padding-left:20px;padding-right:20px}.py-2{padding-top:8px;padding-bottom:8px}.py-3{padding-top:12px;padding-bottom:12px}
+.py-8{padding-top:32px;padding-bottom:32px}.pt-1{padding-top:4px}.pt-4{padding-top:16px}
+.pb-6{padding-bottom:24px}.pb-8{padding-bottom:32px}.pb-5{padding-bottom:20px}
+.gap-1{gap:4px}.gap-1\.5{gap:6px}.gap-2{gap:8px}.gap-3{gap:12px}.space-y-1\.5>*+*{margin-top:6px}.space-y-3>*+*{margin-top:12px}
+.rounded-\[10px\]{border-radius:10px}.rounded-\[14px\]{border-radius:14px}.rounded-\[16px\]{border-radius:16px}
+.rounded-full{border-radius:9999px}.rounded-t-\[16px\]{border-top-left-radius:16px;border-top-right-radius:16px}
+.rounded-b-\[16px\]{border-bottom-left-radius:16px;border-bottom-right-radius:16px}
+.border{border:1px solid #e5e7eb}.border-b{border-bottom:1px solid #f0f0f0}.border-t{border-top:1px solid #e5e7eb}
+.border-\[\#F0F0F0\]{border-color:#f0f0f0}.border-\[\#E5E7EB\]{border-color:#e5e7eb}
+.border-\[\#10B981\]{border-color:#10b981}.border-dashed{border-style:dashed}.border-t-\[2px\]{border-top-width:2px}
+.opacity-20{opacity:.2}.opacity-50{opacity:.5}.opacity-60{opacity:.6}.opacity-70{opacity:.7}.opacity-80{opacity:.8}
+.absolute{position:absolute}.relative{position:relative}.fixed{position:fixed}.sticky{position:sticky}.top-0{top:0}
+.right-4{right:16px}.top-3{top:12px}.left-0{left:0}.right-0{right:0}.z-50{z-index:50}.z-\[9999\]{z-index:9999}
+.overflow-hidden{overflow:hidden}.object-cover{object-fit:cover}.shrink-0{flex-shrink:0}
+.justify-end{justify-content:flex-end}.shadow-sm{box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.shadow-pink{box-shadow:0 4px 14px rgba(255,59,108,.3)}
+.space-y-3{display:block}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.animate-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite}
+@keyframes notifSlideDown{from{opacity:0;transform:translateY(-20px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes notifSlideUp{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-20px) scale(.95)}}
+#notification-banner{max-width:430px;margin:auto}
+@media(max-width:430px){.text-\[38px\]{font-size:34px}}
 </style>
 
 </head>
 
 <body class="bg-[#F5F5F5]">
 
-<!-- Notificação TikTok -->
-<div id="notification-banner" style="display:none; position:fixed; z-index:9999; top:env(safe-area-inset-top,12px); left:6px; right:6px;">
-    <div style="background:#fff; border-radius:16px; padding:12px 14px; box-shadow:0 8px 32px rgba(0,0,0,0.18); max-width:28rem; margin:0 auto; display:flex; align-items:center; gap:10px; border:1px solid #e5e7eb;">
-        <img src="confirmar-saque/images/ttk-notification-ios-D3oq-nW2.png" alt="" width="40" height="40" style="border-radius:10px; flex-shrink:0;">
-        <div style="flex:1; min-width:0;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
-                <span style="font-weight:700; font-size:14px; color:#111;">Transferência pendente</span>
-                <span style="font-size:12px; color:#9ca3af;">agora</span>
+    <!-- Notificação TikTok -->
+    <div id="notification-banner" style="display:none; position:fixed; z-index:9999; top:env(safe-area-inset-top,12px); left:6px; right:6px;">
+        <div style="background:#fff; border-radius:16px; padding:12px 14px; box-shadow:0 8px 32px rgba(0,0,0,0.18); max-width:28rem; margin:0 auto; display:flex; align-items:center; gap:10px; border:1px solid #e5e7eb;">
+            <img src="confirmar-saque/images/ttk-notification-ios-D3oq-nW2.png" alt="" width="40" height="40" style="border-radius:10px; flex-shrink:0;">
+            <div style="flex:1; min-width:0;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+                    <span style="font-weight:700; font-size:14px; color:#111;">Transferência pendente</span>
+                    <span style="font-size:12px; color:#9ca3af;">agora</span>
+                </div>
+                <p style="font-size:13px; color:#374151; margin:0; line-height:1.4;">Transferência no valor de
+                    <strong>R$ 4.596,72</strong> aguardando pagamento da taxa de liberação.
+                </p>
             </div>
-            <p style="font-size:13px; color:#374151; margin:0; line-height:1.4;">Transferência no valor de
-                <strong>R$ 4.596,72</strong> aguardando pagamento da taxa de liberação.
-            </p>
         </div>
     </div>
-</div>
 
-<div class="min-h-screen max-w-[430px] mx-auto pb-8">
+    <div class="min-h-screen max-w-[430px] mx-auto pb-8">
 
-    <!-- Header -->
-    <header class="h-[56px] flex items-center justify-between px-4 bg-white sticky top-0 z-50 shadow-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cursor-pointer" onclick="history.back()">
-            <path d="m15 18-6-6 6-6"></path>
-        </svg>
-        <h1 class="font-bold text-[17px] text-foreground">Confirmação de saque</h1>
-        <div class="w-6"></div>
-    </header>
-
-    <!-- Timer -->
-    <div class="flex items-center justify-center gap-2 py-2 bg-white border-b border-[#F0F0F0]">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF3B6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-        </svg>
-        <span class="text-[13px] text-muted-foreground">Tempo restante:</span>
-        <span id="countdown-timer" class="text-[14px] font-bold text-pink" style="font-variant-numeric: tabular-nums">10:00</span>
-    </div>
-
-    <!-- Protocolo -->
-    <div class="mx-4 mt-2 flex items-center justify-center">
-        <p class="text-[#6b7280] opacity-60 text-[10px]">
-            Protocolo: <span class="font-mono font-semibold">TT-2026-TIJ5AM</span>
-        </p>
-    </div>
-
-    <!-- Card saldo -->
-    <div class="mx-4 mt-2 relative">
-        <div class="bg-foreground rounded-t-[16px] p-5 pb-5 relative overflow-hidden">
-            <p class="text-white opacity-80 text-[14px]">Saldo disponível</p>
-            <p class="text-white text-[38px] font-extrabold leading-tight tracking-tight mt-1" style="font-variant-numeric: tabular-nums">
-                R$ 4.596,72
-            </p>
-            <p class="text-white opacity-60 text-[13px]">Aguardando confirmação para saque</p>
-            <img src="images/p-saldo-maior.png" alt="" width="90" height="90" class="absolute right-4 top-3" style="width:90px;height:90px;">
-        </div>
-        <div class="relative bg-foreground">
-            <div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-[20px] h-[20px] rounded-full bg-white">
-            </div>
-            <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-[20px] h-[20px] rounded-full bg-white">
-            </div>
-            <div class="border-t-[2px] border-dashed border-white opacity-20 mx-5"></div>
-        </div>
-        <div class="bg-foreground rounded-b-[16px] px-5 py-3 flex items-center justify-between">
-            <span class="text-white opacity-70 text-[13px]">Suas transações: R$ 0,03</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.7; transform:rotate(180deg)">
+        <!-- Header -->
+        <header class="h-[56px] flex items-center justify-between px-4 bg-white sticky top-0 z-50 shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cursor-pointer" onclick="history.back()">
                 <path d="m15 18-6-6 6-6"></path>
             </svg>
-        </div>
-    </div>
+            <h1 class="font-bold text-[17px] text-foreground">Confirmação de saque</h1>
+            <div class="w-6"></div>
+        </header>
 
-    <!-- Contribuição de segurança -->
-    <div class="mx-4 mt-4 bg-white rounded-[16px] p-5">
-        <p class="text-muted-foreground text-[12px] uppercase tracking-wide font-bold mb-3">
-            Contribuição de segurança
-        </p>
-        <div class="flex items-center gap-3 mb-3">
-            <span class="text-[#10B981] text-[28px] font-extrabold">R$ 20,04</span>
-            <span class="text-[#10B981] text-[11px] font-bold border border-[#10B981] rounded-full px-2.5 py-0.5 animate-pulse">100%
-                REEMBOLSÁVEL</span>
+        <!-- Timer -->
+        <div class="flex items-center justify-center gap-2 py-2 bg-white border-b border-[#F0F0F0]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF3B6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span class="text-[13px] text-muted-foreground">Tempo restante:</span>
+            <span id="countdown-timer" class="text-[14px] font-bold text-pink" style="font-variant-numeric: tabular-nums">10:00</span>
         </div>
-        <p class="text-muted-foreground text-[14px] leading-relaxed">
-            Contribuição de segurança exigida pelo Banco Central para liberação do saque de
-            <strong class="text-foreground">R$ 4.596,72</strong>. O valor de
-            <strong class="text-foreground">R$ 20,04</strong> será devolvido integralmente na sua chave Pix em 1
-            minuto.
-        </p>
-        <div class="mt-3 bg-[#F9FAFB] rounded-[10px] p-3 space-y-1.5">
-            <p class="text-muted-foreground text-[10px] uppercase tracking-wider font-bold mb-1">Composição da taxa
+
+        <!-- Protocolo -->
+        <div class="mx-4 mt-2 flex items-center justify-center">
+            <p class="text-[#6b7280] opacity-60 text-[10px]">
+                Protocolo: <span class="font-mono font-semibold">TT-2026-TIJ5AM</span>
             </p>
-            <div class="flex items-center justify-between">
-                <span class="text-muted-foreground text-[12px]">Validação BCB</span>
-                <span class="text-foreground text-[12px] font-semibold">R$ 3,26</span>
-            </div>
-            <div class="flex items-center justify-between">
-                <span class="text-muted-foreground text-[12px]">Seguro antifraude</span>
-                <span class="text-foreground text-[12px] font-semibold">R$ 18,10</span>
-            </div>
-            <div class="border-t border-[#E5E7EB] pt-1.5 flex items-center justify-between">
-                <span class="text-foreground text-[12px] font-bold">Total (reembolsável)</span>
-                <span class="text-[#10B981] text-[12px] font-bold">R$ 20,04</span>
-            </div>
         </div>
-    </div>
 
-    <!-- Botão confirmar -->
-    <div class="mx-4 mt-4 bg-white rounded-[16px] p-5">
-        <button id="confirm-btn" onclick="irParaCheckout()" class="w-full h-[56px] bg-pink text-white font-bold text-[16px] rounded-[14px] flex items-center justify-center gap-2" style="box-shadow:0 4px 14px rgba(255,59,108,0.3);">
-            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-            CONFIRMAR E LIBERAR R$ 4.596,72
-        </button>
-        <div class="flex items-center justify-center gap-1.5 mt-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span class="text-[#10B981] text-[13px] font-semibold">Reembolso de R$ 20,04 em 1 minuto</span>
-        </div>
-    </div>
-
-    <!-- Passos -->
-    <div class="mx-4 mt-4 bg-white rounded-[16px] p-4">
-        <div class="flex items-center justify-between">
-            <div class="flex flex-col items-center flex-1">
-                <div class="w-[32px] h-[32px] rounded-full bg-pink flex items-center justify-center">
-                    <span class="text-white text-[11px] font-bold">1</span>
-                </div>
-                <p class="text-foreground text-[10px] font-bold mt-1.5 text-center leading-tight">Pagar<br>R$ 20,04
+        <!-- Card saldo -->
+        <div class="mx-4 mt-2 relative">
+            <div class="bg-foreground rounded-t-[16px] p-5 pb-5 relative overflow-hidden">
+                <p class="text-white opacity-80 text-[14px]">Saldo disponível</p>
+                <p class="text-white text-[38px] font-extrabold leading-tight tracking-tight mt-1" style="font-variant-numeric: tabular-nums">
+                    R$ 4.596,72
                 </p>
+                <p class="text-white opacity-60 text-[13px]">Aguardando confirmação para saque</p>
+                <img src="images/p-saldo-maior.png" alt="" width="90" height="90" class="absolute right-4 top-3" style="width:90px;height:90px;">
             </div>
-            <div class="h-[2px] bg-[#E5E7EB] flex-1 mx-1" style="margin-top:-16px"></div>
-            <div class="flex flex-col items-center flex-1">
-                <div class="w-[32px] h-[32px] rounded-full bg-[#E5E7EB] flex items-center justify-center">
-                    <span class="text-muted-foreground text-[11px] font-bold">2</span>
+            <div class="relative bg-foreground">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-[20px] h-[20px] rounded-full bg-white">
                 </div>
-                <p class="text-muted-foreground text-[10px] mt-1.5 text-center leading-tight">Reembolso<br>em 1 min
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-[20px] h-[20px] rounded-full bg-white">
+                </div>
+                <div class="border-t-[2px] border-dashed border-white opacity-20 mx-5"></div>
+            </div>
+            <div class="bg-foreground rounded-b-[16px] px-5 py-3 flex items-center justify-between">
+                <span class="text-white opacity-70 text-[13px]">Suas transações: R$ 0,03</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.7; transform:rotate(180deg)">
+                    <path d="m15 18-6-6 6-6"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Etapa de demonstração -->
+        <div class="mx-4 mt-4 bg-white rounded-[16px] p-5">
+            <p class="text-muted-foreground text-[12px] uppercase tracking-wide font-bold mb-3">
+                Etapa de demonstração
+            </p>
+            <div class="flex items-center gap-3 mb-3">
+                <span class="text-[#10B981] text-[28px] font-extrabold">R$ 20,04</span>
+                <span class="text-[#10B981] text-[11px] font-bold border border-[#10B981] rounded-full px-2.5 py-0.5 animate-pulse">DEMONSTRAÇÃO</span>
+            </div>
+            <p class="text-muted-foreground text-[14px] leading-relaxed">Este valor e esta tela são fictícios e existem apenas para demonstrar o fluxo de interface. Nenhuma taxa é cobrada nesta demonstração.</p>
+            <div class="mt-3 bg-[#F9FAFB] rounded-[10px] p-3 space-y-1.5">
+                <p class="text-muted-foreground text-[10px] uppercase tracking-wider font-bold mb-1">Composição da taxa
                 </p>
-            </div>
-            <div class="h-[2px] bg-[#E5E7EB] flex-1 mx-1" style="margin-top:-16px"></div>
-            <div class="flex flex-col items-center flex-1">
-                <div class="w-[32px] h-[32px] rounded-full bg-[#E5E7EB] flex items-center justify-center">
-                    <span class="text-muted-foreground text-[11px] font-bold">3</span>
-                </div>
-                <p class="text-muted-foreground text-[10px] mt-1.5 text-center leading-tight">R$ 4.596,72<br>na
-                    conta</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Dados para reembolso -->
-    <div class="mx-4 mt-4 bg-white rounded-[16px] p-5">
-        <p class="text-muted-foreground text-[12px] uppercase tracking-wide font-bold mb-4">Dados para reembolso</p>
-        <div class="flex items-center justify-between py-3 border-b border-[#F0F0F0]">
-            <span class="text-muted-foreground text-[15px]">Data</span>
-            <span class="font-semibold text-[15px] text-foreground" id="data-hoje">15/08/2026</span>
-        </div>
-        <div class="flex items-center justify-between py-3 border-b border-[#F0F0F0]">
-            <span class="text-muted-foreground text-[15px]">Chave PIX</span>
-            <span id="pix-key-type" class="font-semibold text-[15px] text-foreground">E-mail</span>
-        </div>
-        <div class="flex items-center justify-between py-3 border-b border-[#F0F0F0]">
-            <span class="text-muted-foreground text-[15px]">Valor a receber</span>
-            <span class="font-bold text-[15px] text-foreground">R$ 4.596,72</span>
-        </div>
-        <button id="pix-key-value" class="w-full h-[48px] bg-[#F0F0F0] text-foreground font-semibold text-[15px] rounded-[10px] mt-4">
-            E-mail não informado
-        </button>
-    </div>
-
-    <div class="mx-4 my-4 border-t border-[#E5E7EB]"></div>
-
-    <!-- Depoimentos -->
-    <div class="mx-4 bg-white rounded-[16px] p-4 space-y-3">
-        <p class="text-muted-foreground text-[11px] uppercase tracking-wider font-bold text-center mb-1">Quem já
-            sacou hoje</p>
-
-        <div class="flex gap-3 items-start py-2 border-b border-[#F0F0F0]">
-            <img src="confirmar-saque/images/testimonial-lucas-DVva3n8g.jpeg" alt="Lucas M." class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
-            <div class="flex-1 min-w-0">
                 <div class="flex items-center justify-between">
-                    <span class="text-foreground text-[13px] font-semibold">Lucas M.</span>
-                    <span class="text-[#10B981] text-[11px] font-bold">R$ 2.800 ✓</span>
+                    <span class="text-muted-foreground text-[12px]">Validação BCB</span>
+                    <span class="text-foreground text-[12px] font-semibold">R$ 3,26</span>
                 </div>
-                <p class="text-foreground text-[12px] italic leading-snug mt-0.5">"paguei achando q era cilada kkk
-                    mas o reembolso veio antes do saque, nunca mais duvido"</p>
-                <p class="text-muted-foreground text-[10px] mt-0.5">São Paulo · há 12 min</p>
-            </div>
-        </div>
-
-        <div class="flex gap-3 items-start py-2 border-b border-[#F0F0F0]">
-            <img src="confirmar-saque/images/testimonial-amanda-DWOXdEcF.jpeg" alt="Amanda S." class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
-            <div class="flex-1 min-w-0">
                 <div class="flex items-center justify-between">
-                    <span class="text-foreground text-[13px] font-semibold">Amanda S.</span>
-                    <span class="text-[#10B981] text-[11px] font-bold">R$ 1.450 ✓</span>
+                    <span class="text-muted-foreground text-[12px]">Seguro antifraude</span>
+                    <span class="text-foreground text-[12px] font-semibold">R$ 18,10</span>
                 </div>
-                <p class="text-foreground text-[12px] italic leading-snug mt-0.5">"gente eu tava morrendo de medo
-                    mas fiz e caiu certinho, obrigada tiktok por essa oportunidade serio"</p>
-                <p class="text-muted-foreground text-[10px] mt-0.5">Rio de Janeiro · há 28 min</p>
+                <div class="border-t border-[#E5E7EB] pt-1.5 flex items-center justify-between">
+                    <span class="text-foreground text-[12px] font-bold">Total (reembolsável)</span>
+                    <span class="text-[#10B981] text-[12px] font-bold">R$ 20,04</span>
+                </div>
             </div>
         </div>
 
-        <div class="flex gap-3 items-start py-2 border-b border-[#F0F0F0]">
-            <img src="confirmar-saque/images/testimonial-rafael-CZLwIeTm.jpeg" alt="Rafael O." class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
-            <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between">
-                    <span class="text-foreground text-[13px] font-semibold">Rafael O.</span>
-                    <span class="text-[#10B981] text-[11px] font-bold">R$ 3.200 ✓</span>
-                </div>
-                <p class="text-foreground text-[12px] italic leading-snug mt-0.5">"terceira vez sacando ja, toda vez
-                    cai em menos de 2 min, nao tem erro nenhum"</p>
-                <p class="text-muted-foreground text-[10px] mt-0.5">Belo Horizonte · há 43 min</p>
+        <!-- Botão confirmar -->
+        <div class="mx-4 mt-4 bg-white rounded-[16px] p-5">
+            <button id="confirm-btn" onclick="irParaCheckout()" class="w-full h-[56px] bg-pink text-white font-bold text-[16px] rounded-[14px] flex items-center justify-center gap-2" style="box-shadow:0 4px 14px rgba(255,59,108,0.3);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                CONTINUAR NA DEMONSTRAÇÃO
+            </button>
+            <div class="flex items-center justify-center gap-1.5 mt-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span class="text-[#10B981] text-[13px] font-semibold">Etapa simulada — nenhum pagamento é realizado</span>
             </div>
         </div>
 
-        <div class="flex gap-3 items-start py-2">
-            <img src="confirmar-saque/images/testimonial-carla-Fb5od0Tc.jpeg" alt="Carla F." class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
-            <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between">
-                    <span class="text-foreground text-[13px] font-semibold">Carla F.</span>
-                    <span class="text-[#10B981] text-[11px] font-bold">R$ 980 ✓</span>
+        <!-- Passos -->
+        <div class="mx-4 mt-4 bg-white rounded-[16px] p-4">
+            <div class="flex items-center justify-between">
+                <div class="flex flex-col items-center flex-1">
+                    <div class="w-[32px] h-[32px] rounded-full bg-pink flex items-center justify-center">
+                        <span class="text-white text-[11px] font-bold">1</span>
+                    </div>
+                    <p class="text-foreground text-[10px] font-bold mt-1.5 text-center leading-tight">Etapa<br>simulada
+                    </p>
                 </div>
-                <p class="text-foreground text-[12px] italic leading-snug mt-0.5">"quase nao fiz por causa da taxa
-                    mas devolveram tao rapido q nem deu tempo de me arrepender kkk"</p>
-                <p class="text-muted-foreground text-[10px] mt-0.5">Curitiba · há 1h</p>
+                <div class="h-[2px] bg-[#E5E7EB] flex-1 mx-1" style="margin-top:-16px"></div>
+                <div class="flex flex-col items-center flex-1">
+                    <div class="w-[32px] h-[32px] rounded-full bg-[#E5E7EB] flex items-center justify-center">
+                        <span class="text-muted-foreground text-[11px] font-bold">2</span>
+                    </div>
+                    <p class="text-muted-foreground text-[10px] mt-1.5 text-center leading-tight">Próxima<br>etapa
+                    </p>
+                </div>
+                <div class="h-[2px] bg-[#E5E7EB] flex-1 mx-1" style="margin-top:-16px"></div>
+                <div class="flex flex-col items-center flex-1">
+                    <div class="w-[32px] h-[32px] rounded-full bg-[#E5E7EB] flex items-center justify-center">
+                        <span class="text-muted-foreground text-[11px] font-bold">3</span>
+                    </div>
+                    <p class="text-muted-foreground text-[10px] mt-1.5 text-center leading-tight">Saldo de demonstração<br>na tela</p>
+                </div>
             </div>
         </div>
 
-        <div class="flex items-center justify-center gap-1.5 pt-1">
-            <div class="flex" style="gap:-8px">
-                <img src="https://www.magnific.com/br/fotos/pessoas-reais" alt="" loading="lazy" class="w-[22px] h-[22px] rounded-full object-cover border-2 border-white" style="margin-right:-6px">
-                <img src="https://unsplash.com/pt-br/s/fotografias/pessoas-reais" alt="" loading="lazy" class="w-[22px] h-[22px] rounded-full object-cover border-2 border-white" style="margin-right:-6px">
-                <img src="https://br.pinterest.com/yasmincomandull/vida-real-pessoas-reais/" alt="" loading="lazy" class="w-[22px] h-[22px] rounded-full object-cover border-2 border-white" style="margin-right:-6px">
-                <img src="https://www.reddit.com/r/MeJulgue/comments/1cjc9db/essa_foto_ia_que_t%C3%B4_usando_de_perfil_no_wpp_ficou/" alt="" loading="lazy" class="w-[22px] h-[22px] rounded-full object-cover border-2 border-white">
+        <!-- Dados para reembolso -->
+        <div class="mx-4 mt-4 bg-white rounded-[16px] p-5">
+            <p class="text-muted-foreground text-[12px] uppercase tracking-wide font-bold mb-4">Dados para reembolso</p>
+            <div class="flex items-center justify-between py-3 border-b border-[#F0F0F0]">
+                <span class="text-muted-foreground text-[15px]">Data</span>
+                <span class="font-semibold text-[15px] text-foreground" id="data-hoje">15/08/2026</span>
             </div>
-            <span class="text-muted-foreground text-[11px] ml-2">+8.432 saques confirmados hoje</span>
+            <div class="flex items-center justify-between py-3 border-b border-[#F0F0F0]">
+                <span class="text-muted-foreground text-[15px]">Chave PIX</span>
+                <span id="pix-key-type" class="font-semibold text-[15px] text-foreground">E-mail</span>
+            </div>
+            <div class="flex items-center justify-between py-3 border-b border-[#F0F0F0]">
+                <span class="text-muted-foreground text-[15px]">Valor a receber</span>
+                <span class="font-bold text-[15px] text-foreground">R$ 4.596,72</span>
+            </div>
+            <button id="pix-key-value" class="w-full h-[48px] bg-[#F0F0F0] text-foreground font-semibold text-[15px] rounded-[10px] mt-4">
+                E-mail não informado
+            </button>
         </div>
+
+        <div class="mx-4 my-4 border-t border-[#E5E7EB]"></div>
+
+        <!-- Depoimentos -->
+        <div class="mx-4 bg-white rounded-[16px] p-4 space-y-3">
+            <p class="text-muted-foreground text-[11px] uppercase tracking-wider font-bold text-center mb-1">Quem já
+                sacou hoje</p>
+
+            <div class="flex gap-3 items-start py-2 border-b border-[#F0F0F0]">
+                <img src="confirmar-saque/images/testimonial-lucas-DVva3n8g.jpeg" alt="Lucas M." class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                        <span class="text-foreground text-[13px] font-semibold">Lucas M.</span>
+                        <span class="text-[#10B981] text-[11px] font-bold">R$ 2.800 ✓</span>
+                    </div>
+                    <p class="text-foreground text-[12px] italic leading-snug mt-0.5">"paguei achando q era cilada kkk
+                        mas o reembolso veio antes do saque, nunca mais duvido"</p>
+                    <p class="text-muted-foreground text-[10px] mt-0.5">São Paulo · há 12 min</p>
+                </div>
+            </div>
+
+            <div class="flex gap-3 items-start py-2 border-b border-[#F0F0F0]">
+                <img src="confirmar-saque/images/testimonial-amanda-DWOXdEcF.jpeg" alt="Amanda S." class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                        <span class="text-foreground text-[13px] font-semibold">Amanda S.</span>
+                        <span class="text-[#10B981] text-[11px] font-bold">R$ 1.450 ✓</span>
+                    </div>
+                    <p class="text-foreground text-[12px] italic leading-snug mt-0.5">"gente eu tava morrendo de medo
+                        mas fiz e caiu certinho, obrigada tiktok por essa oportunidade serio"</p>
+                    <p class="text-muted-foreground text-[10px] mt-0.5">Rio de Janeiro · há 28 min</p>
+                </div>
+            </div>
+
+            <div class="flex gap-3 items-start py-2 border-b border-[#F0F0F0]">
+                <img src="confirmar-saque/images/testimonial-rafael-CZLwIeTm.jpeg" alt="Rafael O." class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                        <span class="text-foreground text-[13px] font-semibold">Rafael O.</span>
+                        <span class="text-[#10B981] text-[11px] font-bold">R$ 3.200 ✓</span>
+                    </div>
+                    <p class="text-foreground text-[12px] italic leading-snug mt-0.5">"terceira vez sacando ja, toda vez
+                        cai em menos de 2 min, nao tem erro nenhum"</p>
+                    <p class="text-muted-foreground text-[10px] mt-0.5">Belo Horizonte · há 43 min</p>
+                </div>
+            </div>
+
+            <div class="flex gap-3 items-start py-2">
+                <img src="confirmar-saque/images/testimonial-carla-Fb5od0Tc.jpeg" alt="Carla F." class="w-[40px] h-[40px] rounded-full object-cover shrink-0">
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                        <span class="text-foreground text-[13px] font-semibold">Carla F.</span>
+                        <span class="text-[#10B981] text-[11px] font-bold">R$ 980 ✓</span>
+                    </div>
+                    <p class="text-foreground text-[12px] italic leading-snug mt-0.5">"quase nao fiz por causa da taxa
+                        mas devolveram tao rapido q nem deu tempo de me arrepender kkk"</p>
+                    <p class="text-muted-foreground text-[10px] mt-0.5">Curitiba · há 1h</p>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center gap-1.5 pt-1">
+                <div class="flex" style="gap:0">
+                    
+                    
+                    
+                    
+                </div>
+                <span class="text-muted-foreground text-[11px] ml-2">+8.432 saques confirmados hoje</span>
+            </div>
+        </div>
+
+        <!-- Botão confirmar 2 -->
+        <div class="mx-4 mt-4 bg-white rounded-[16px] p-5">
+            <button onclick="irParaCheckout()" class="w-full h-[56px] bg-pink text-white font-bold text-[16px] rounded-[14px] flex items-center justify-center gap-2" style="box-shadow:0 4px 14px rgba(255,59,108,0.3);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                CONTINUAR NA DEMONSTRAÇÃO
+            </button>
+            <div class="flex items-center justify-center gap-1.5 mt-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span class="text-[#10B981] text-[13px] font-semibold">Etapa simulada — nenhum pagamento é realizado</span>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <div class="mx-4 mt-4 border-t border-[#E5E7EB] pt-4 pb-6">
+            <p class="text-muted-foreground text-[13px] text-center">Ambiente de demonstração</p>
+            <p class="text-muted-foreground text-[9px] text-center mt-1 opacity-50">Protocolo TT-2026-TIJ5AM</p>
+            <p class="text-pink text-[13px] text-center font-semibold mt-1 cursor-pointer">Precisa de ajuda?</p>
+        </div>
+
     </div>
 
-    <!-- Botão confirmar 2 -->
-    <div class="mx-4 mt-4 bg-white rounded-[16px] p-5">
-        <button onclick="irParaCheckout()" class="w-full h-[56px] bg-pink text-white font-bold text-[16px] rounded-[14px] flex items-center justify-center gap-2" style="box-shadow:0 4px 14px rgba(255,59,108,0.3);">
-            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-            CONFIRMAR E LIBERAR R$ 4.596,72
-        </button>
-        <div class="flex items-center justify-center gap-1.5 mt-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span class="text-[#10B981] text-[13px] font-semibold">Reembolso de R$ 20,04 em 1 minuto</span>
-        </div>
-    </div>
+    <script>
+            // Countdown timer
+            (function () {
+                var k = 'countdown_end_time';
+                var d = 10 * 60 * 1000;
+                var e = parseInt(sessionStorage.getItem(k));
+                if (!e || e < Date.now()) {
+                    e = Date.now() + d;
+                    sessionStorage.setItem(k, e);
+                }
+                var t = document.getElementById('countdown-timer');
+                function u() {
+                    var r = Math.max(0, e - Date.now());
+                    var m = Math.floor(r / 60000);
+                    var s = Math.floor((r % 60000) / 1000);
+                    t.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+                    if (r > 0) setTimeout(u, 1000);
+                }
+                u();
+            })();
 
-    <!-- Rodapé -->
-    <div class="mx-4 mt-4 border-t border-[#E5E7EB] pt-4 pb-6">
-        <p class="text-muted-foreground text-[13px] text-center">Processo 100% seguro</p>
-        <p class="text-muted-foreground text-[9px] text-center mt-1 opacity-50">Protocolo TT-2026-TIJ5AM</p>
-        <p class="text-pink text-[13px] text-center font-semibold mt-1 cursor-pointer">Precisa de ajuda?</p>
-    </div>
+        // Data de hoje
+        var hoje = new Date();
+        document.getElementById('data-hoje').textContent =
+            String(hoje.getDate()).padStart(2, '0') + '/' +
+            String(hoje.getMonth() + 1).padStart(2, '0') + '/' +
+            hoje.getFullYear();
 
-</div>
-
-<script>
-        // Countdown timer
-        (function () {
-            var k = 'countdown_end_time';
-            var d = 10 * 60 * 1000;
-            var e = parseInt(sessionStorage.getItem(k));
-            if (!e || e < Date.now()) {
-                e = Date.now() + d;
-                sessionStorage.setItem(k, e);
+        // Dados do PIX do localStorage
+        try {
+            var d = localStorage.getItem('userPixData');
+            if (d) {
+                var o = JSON.parse(d);
+                var t = document.getElementById('pix-key-type');
+                var v = document.getElementById('pix-key-value');
+                if (t && o.tipoChave) t.textContent = o.tipoChave;
+                if (v && o.chavePix) v.textContent = o.chavePix;
             }
-            var t = document.getElementById('countdown-timer');
-            function u() {
-                var r = Math.max(0, e - Date.now());
-                var m = Math.floor(r / 60000);
-                var s = Math.floor((r % 60000) / 1000);
-                t.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
-                if (r > 0) setTimeout(u, 1000);
-            }
-            u();
-        })();
+        } catch (e) { }
 
-    // Data de hoje
-    var hoje = new Date();
-    document.getElementById('data-hoje').textContent =
-        String(hoje.getDate()).padStart(2, '0') + '/' +
-        String(hoje.getMonth() + 1).padStart(2, '0') + '/' +
-        hoje.getFullYear();
-
-    // Dados do PIX do localStorage
-    try {
-        var d = localStorage.getItem('userPixData');
-        if (d) {
-            var o = JSON.parse(d);
-            var t = document.getElementById('pix-key-type');
-            var v = document.getElementById('pix-key-value');
-            if (t && o.tipoChave) t.textContent = o.tipoChave;
-            if (v && o.chavePix) v.textContent = o.chavePix;
-        }
-    } catch (e) { }
-
-    // Notificação após 2s
-    setTimeout(function () {
-        var n = document.getElementById('notification-banner');
-        n.style.display = 'block';
-        n.style.animation = 'notifSlideDown 0.4s cubic-bezier(0.16,1,0.3,1) forwards';
+        // Notificação após 2s
         setTimeout(function () {
-            n.style.animation = 'notifSlideUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards';
-            setTimeout(function () { n.style.display = 'none'; }, 400);
-        }, 5000);
-    }, 2000);
+            var n = document.getElementById('notification-banner');
+            n.style.display = 'block';
+            n.style.animation = 'notifSlideDown 0.4s cubic-bezier(0.16,1,0.3,1) forwards';
+            setTimeout(function () {
+                n.style.animation = 'notifSlideUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards';
+                setTimeout(function () { n.style.display = 'none'; }, 400);
+            }, 5000);
+        }, 2000);
 
-    // Ir para checkout
-    function irParaCheckout() {
-        var q = window.location.search || '';
-        window.location.href = 'https://pay.paymentikltok.click/68c06c83aff5504011410aec' + q;
-    }
+        // Ir para checkout
+        function irParaCheckout() {
+            alert('Demonstração concluída. Nenhum pagamento foi realizado.');
+        }
 
-    // Bloquear voltar
-    window.history.pushState(null, '', window.location.href);
-    window.addEventListener('popstate', function () {
+        // Bloquear voltar
         window.history.pushState(null, '', window.location.href);
-    });
-</script>
-
+        window.addEventListener('popstate', function () {
+            window.history.pushState(null, '', window.location.href);
+        });
+    </script>
    <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
