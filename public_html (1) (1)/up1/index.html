@@ -864,21 +864,17 @@
 
     window.addEventListener("load", updateLinks);
 
+ <script>
     /* =======================
        CHECKBOX
     ======================= */
     const checkbox = document.getElementById("termsCheckbox");
     const button = document.getElementById("paymentButton");
 
-    checkbox.addEventListener("change", () => {
-        if (checkbox.checked) {
-            button.classList.add("enabled");
-            button.setAttribute("data-enabled", "true");
-        } else {
-            button.classList.remove("enabled");
-            button.setAttribute("data-enabled", "false");
-        }
-    });
+    // Botão inicia habilitado
+    button.classList.add("enabled");
+    button.setAttribute("data-enabled", "true");
+
 
     /* =======================
        CLICK / TOUCH (MOBILE SAFE)
@@ -886,11 +882,6 @@
     function goToCheckout(event) {
         event.preventDefault();
         event.stopPropagation();
-
-        if (button.getAttribute("data-enabled") !== "true") {
-            alert("Você precisa aceitar os termos antes de prosseguir.");
-            return;
-        }
 
         const params = new URLSearchParams(window.location.search).toString();
         const finalUrl = params ? `${checkoutUrl}?${params}` : checkoutUrl;
@@ -902,115 +893,119 @@
     button.addEventListener("touchstart", goToCheckout, { passive: false });
 </script>
 
-    <script type="text/javascript">
-        const lazyloadRunObserver = () => {
-            const lazyloadBackgrounds = document.querySelectorAll(`.e-con.e-parent:not(.e-lazyloaded)`);
-            const lazyloadBackgroundObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        let lazyloadBackground = entry.target;
-                        if (lazyloadBackground) {
-                            lazyloadBackground.classList.add('e-lazyloaded');
-                        }
-                        lazyloadBackgroundObserver.unobserve(entry.target);
+<script type="text/javascript">
+    const lazyloadRunObserver = () => {
+        const lazyloadBackgrounds = document.querySelectorAll(`.e-con.e-parent:not(.e-lazyloaded)`);
+        const lazyloadBackgroundObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    let lazyloadBackground = entry.target;
+                    if (lazyloadBackground) {
+                        lazyloadBackground.classList.add('e-lazyloaded');
                     }
-                });
-            }, {
-                rootMargin: '200px 0px 200px 0px'
+                    lazyloadBackgroundObserver.unobserve(entry.target);
+                }
             });
-            lazyloadBackgrounds.forEach((lazyloadBackground) => {
-                lazyloadBackgroundObserver.observe(lazyloadBackground);
-            });
-        };
-        const events = [
-            'DOMContentLoaded',
-            'elementor/lazyload/observe',
-        ];
-        events.forEach((event) => {
-            document.addEventListener(event, lazyloadRunObserver);
+        }, {
+            rootMargin: '200px 0px 200px 0px'
         });
-    </script>
-    <script src="/up1/js/hello-frontend.min.js" id="hello-theme-frontend-js"></script>
-    <script src="/up1/js/general.min.js" id="eael-general-js"></script>
-    <script src="/up1/js/webpack-pro.runtime.min.js" id="elementor-pro-webpack-runtime-js"></script>
-    <script src="/up1/js/webpack.runtime.min.js" id="elementor-webpack-runtime-js"></script>
-    <script src="/up1/js/frontend-modules.min.js" id="elementor-frontend-modules-js"></script>
-    <script src="/up1/js/hooks.min.js" id="wp-hooks-js"></script>
-    <script src="/up1/js/i18n.min.js" id="wp-i18n-js"></script>
-    <script id="wp-i18n-js-after">
-        wp.i18n.setLocaleData({
-            'text direction\u0004ltr': ['ltr']
+
+        lazyloadBackgrounds.forEach((lazyloadBackground) => {
+            lazyloadBackgroundObserver.observe(lazyloadBackground);
         });
-    </script>
-    <script src="/up1/js/frontend.min.js" id="elementor-pro-frontend-js"></script>
-    <script src="/up1/js/core.min.js" id="jquery-ui-core-js"></script>
-    <script src="/up1/js/frontend.min_1.js" id="elementor-frontend-js"></script>
-    <script src="/up1/js/elements-handlers.min.js" id="pro-elements-handlers-js"></script>
-    <script id="eael-inline-js">
-        document.addEventListener('DOMContentLoaded', function() {
-            var preloaderFake = document.getElementById("preloader-fake");
-            var loadingPage = document.getElementById("loading-page");
-            var statusText = document.getElementById("status-text");
-            var progressBarFill = document.getElementById("progress-bar-fill");
-            var pageContent = document.getElementById("main-content"); // Usaremos um wrapper para o conteúdo principal
+    };
 
-            if (pageContent) {
-                // Oculta o conteúdo principal da página inicialmente
-                pageContent.style.opacity = "0";
-                pageContent.style.visibility = "hidden";
-            }
+    const events = [
+        'DOMContentLoaded',
+        'elementor/lazyload/observe',
+    ];
 
-            // Garante que o preloader esteja visível
-            preloaderFake.style.opacity = "1";
-            preloaderFake.style.visibility = "visible";
-            loadingPage.style.opacity = "1";
-            loadingPage.style.visibility = "visible";
+    events.forEach((event) => {
+        document.addEventListener(event, lazyloadRunObserver);
+    });
+</script>
 
-            // Função para atualizar o status
-            function updateStatus(text, progress) {
-                statusText.style.opacity = 0;
-                statusText.style.transform = "translateY(20px)";
+<script src="/up1/js/hello-frontend.min.js" id="hello-theme-frontend-js"></script>
+<script src="/up1/js/general.min.js" id="eael-general-js"></script>
+<script src="/up1/js/webpack-pro.runtime.min.js" id="elementor-pro-webpack-runtime-js"></script>
+<script src="/up1/js/webpack.runtime.min.js" id="elementor-webpack-runtime-js"></script>
+<script src="/up1/js/frontend-modules.min.js" id="elementor-frontend-modules-js"></script>
+<script src="/up1/js/hooks.min.js" id="wp-hooks-js"></script>
+<script src="/up1/js/i18n.min.js" id="wp-i18n-js"></script>
 
-                setTimeout(function() {
-                    statusText.innerText = text;
-                    statusText.style.opacity = 1;
-                    statusText.style.transform = "translateY(0)";
-                    progressBarFill.style.width = progress + "%";
-                }, 300);
-            }
+<script id="wp-i18n-js-after">
+    wp.i18n.setLocaleData({
+        'text direction\u0004ltr': ['ltr']
+    });
+</script>
 
-            // Sequência de carregamento
+<script src="/up1/js/frontend.min.js" id="elementor-pro-frontend-js"></script>
+<script src="/up1/js/core.min.js" id="jquery-ui-core-js"></script>
+<script src="/up1/js/frontend.min_1.js" id="elementor-frontend-js"></script>
+<script src="/up1/js/elements-handlers.min.js" id="pro-elements-handlers-js"></script>
+
+<script id="eael-inline-js">
+    document.addEventListener('DOMContentLoaded', function() {
+        var preloaderFake = document.getElementById("preloader-fake");
+        var loadingPage = document.getElementById("loading-page");
+        var statusText = document.getElementById("status-text");
+        var progressBarFill = document.getElementById("progress-bar-fill");
+        var pageContent = document.getElementById("main-content");
+
+        if (pageContent) {
+            pageContent.style.opacity = "0";
+            pageContent.style.visibility = "hidden";
+        }
+
+        preloaderFake.style.opacity = "1";
+        preloaderFake.style.visibility = "visible";
+        loadingPage.style.opacity = "1";
+        loadingPage.style.visibility = "visible";
+
+        function updateStatus(text, progress) {
+            statusText.style.opacity = 0;
+            statusText.style.transform = "translateY(20px)";
+
             setTimeout(function() {
-                preloaderFake.style.opacity = 0;
-                preloaderFake.style.visibility = "hidden";
-                loadingPage.style.visibility = "visible";
-                loadingPage.style.opacity = 1;
+                statusText.innerText = text;
+                statusText.style.opacity = 1;
+                statusText.style.transform = "translateY(0)";
+                progressBarFill.style.width = progress + "%";
+            }, 300);
+        }
 
-                updateStatus("Validando pesquisa", 30);
+        setTimeout(function() {
+            preloaderFake.style.opacity = 0;
+            preloaderFake.style.visibility = "hidden";
+            loadingPage.style.visibility = "visible";
+            loadingPage.style.opacity = 1;
 
-                setTimeout(function() {
-                    updateStatus("Processando saque...", 60);
-                }, 2000);
+            updateStatus("Validando pesquisa", 30);
 
-                setTimeout(function() {
-                    updateStatus("Pronto!", 100);
-                }, 4000);
+            setTimeout(function() {
+                updateStatus("Processando saque...", 60);
+            }, 2000);
 
-                setTimeout(function() {
-                    loadingPage.style.opacity = 0;
-                    loadingPage.style.visibility = "hidden";
+            setTimeout(function() {
+                updateStatus("Pronto!", 100);
+            }, 4000);
 
-                    // Revela o conteúdo da página
-                    if (pageContent) {
-                        pageContent.style.opacity = "1";
-                        pageContent.style.visibility = "visible";
-                    }
-                    document.body.style.overflow = "auto";
-                }, 5000);
-            }, 400);
-        });;
-    </script>
-    <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" data-cf-beacon="{" rayid="" ":"8fc74dcc6a579f69="" ","version="" ":"2024.10.5="" ","r="" ":1,"token="" ":"bd8c3c5624904f98875dec16e8aecc25="" ","servertiming="" ":{"name="" ":{"cfextpri="" ":true,"cfl4="" ":true,"cfspeedbrain="" ":true,"cfcachestatus="" ":true}}}"="" crossorigin="anonymous"></script>
+            setTimeout(function() {
+                loadingPage.style.opacity = 0;
+                loadingPage.style.visibility = "hidden";
+
+                if (pageContent) {
+                    pageContent.style.opacity = "1";
+                    pageContent.style.visibility = "visible";
+                }
+
+                document.body.style.overflow = "auto";
+            }, 5000);
+        }, 400);
+    });
+</script>
+
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" data-cf-beacon="{" rayid="" ":"8fc74dcc6a579f69="" ","version="" ":"2024.10.5="" ","r="" ":1,"token="" ":"bd8c3c5624904f98875dec16e8aecc25="" ","servertiming="" ":{"name="" ":{"cfextpri="" ":true,"cfl4="" ":true,"cfspeedbrain="" ":true,"cfcachestatus="" ":true}}}"="" crossorigin="anonymous"></script>
 
 
 
