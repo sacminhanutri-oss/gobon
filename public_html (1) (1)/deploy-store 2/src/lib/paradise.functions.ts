@@ -122,5 +122,8 @@ export const getPixTransactionStatus = createServerFn({ method: "POST" })
       headers: { "X-API-Key": getSecretKey() },
     });
     const payload = await parseProviderResponse<ParadiseQueryResponse>(response);
-    return { status: payload.status || "pending" };
+    const raw = String(payload.status || "pending").toLowerCase().trim();
+    const paid = ["approved", "paid", "completed", "complete", "confirmed", "success", "succeeded", "aprovado", "pago"];
+    const status = paid.includes(raw) ? "approved" : raw;
+    return { status };
   });
