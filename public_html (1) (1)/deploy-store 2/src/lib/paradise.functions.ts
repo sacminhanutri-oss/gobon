@@ -49,6 +49,50 @@ function getSecretKey() {
   return secretKey;
 }
 
+const TIKTOK_EVENTS_URL = "https://business-api.tiktok.com/open_api/v1.3/event/track/";
+
+/**
+ * Envia eventos de conversão para o TikTok pelo servidor (Events API),
+ * complementando o Pixel do navegador. O event_id único evita duplicidade.
+ * Falhas nunca interrompem o pagamento.
+ */
+async function sendTikTokEvent(event: "InitiateCheckout" | "CompletePayment", eventId: string, customer?: { email: string; phone: string }) {
+  const accessToken = process.env["TIKTOK_ACCESS_TOKEN"];
+  if (!accessToken) return;
+  try {
+    await fetch(TIKTOK_EVENTS_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Token": accessToken,
+      },
+      body: JSON.stringify({
+        event_source: "web",
+        event_source_id: checkoutConfig.tiktokPixelId,
+        data: [
+          {
+            event,
+            event_id: eventId,
+            event_time: Math.floor(Date.now() / 1000),
+            user: customer
+              ? { email: customer.email, phone: customer.phone }
+              : {},
+            properties: {
+              content_type: "product",
+              content_name: checkoutConfig.product,
+              value: checkoutConfig.price,
+              currency: checkoutConfig.currency,
+              quantity: checkoutConfig.quantity,
+            },
+          },
+        ],
+      }),
+    });
+  } catch {
+    // Falha no envio do evento nunca pode atrapalhar o pagamento.
+  }
+}
+
 async function parseProviderResponse<T>(response: Response): Promise<T> {
   const text = await response.text();
   if (text.length > 1_000_000) throw new Error("Resposta inválida do provedor de pagamento.");
@@ -101,6 +145,8 @@ export const createPixTransaction = createServerFn({ method: "POST" })
       throw new Error(payload.message || "O provedor não retornou um Pix válido.");
     }
 
+    void sendTikTokEvent("InitiateCheckout", `pix-${transactionId}-init`, { email: data.email, phone: data.phone });
+
     return {
       transactionId,
       reference: payload.id || reference,
@@ -125,5 +171,9 @@ export const getPixTransactionStatus = createServerFn({ method: "POST" })
     const raw = String(payload.status || "pending").toLowerCase().trim();
     const paid = ["approved", "paid", "completed", "complete", "confirmed", "success", "succeeded", "aprovado", "pago"];
     const status = paid.includes(raw) ? "approved" : raw;
+    if (status === "approved") {
+      // O event_id fixo por transação faz o TikTok ignorar envios repetidos do polling.
+      void sendTikTokEvent("CompletePayment", `pix-${data.transactionId}-paid`);
+    }
     return { status };
   });
