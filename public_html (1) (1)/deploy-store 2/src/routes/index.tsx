@@ -8,6 +8,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { checkoutConfig, formatPrice } from "@/lib/checkout-config";
 import { createPixTransaction, getPixTransactionStatus } from "@/lib/paradise.functions";
+import { trackCompletePayment, trackInitiateCheckout, trackViewContent } from "@/lib/tiktok-pixel";
 import { PixMark, PixWordmark } from "@/components/ui/pix-logo";
 
 const brandTitle = `Checkout seguro | ${checkoutConfig.brand}`;
@@ -159,6 +160,10 @@ function CheckoutForm({ onGenerated }: { onGenerated: (transaction: PixTransacti
   const [isSubmitting, setIsSubmitting] = useState(false);
   const createPix = useServerFn(createPixTransaction);
 
+  useEffect(() => {
+    trackViewContent();
+  }, []);
+
   const updateField = (name: keyof FormFields, rawValue: string) => {
     const value = name === "cpf" ? maskCpf(rawValue) : name === "phone" ? maskPhone(rawValue) : rawValue;
     setForm((current) => ({ ...current, [name]: value }));
@@ -207,6 +212,7 @@ function CheckoutForm({ onGenerated }: { onGenerated: (transaction: PixTransacti
           tracking: getTracking(),
         },
       });
+      trackInitiateCheckout();
       onGenerated(transaction);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
@@ -295,6 +301,10 @@ function PixPage({ transaction, onBack }: { transaction: PixTransaction; onBack:
     const poller = window.setInterval(() => void checkPayment(), 5000);
     return () => window.clearInterval(poller);
   }, [checkPayment, status]);
+
+  useEffect(() => {
+    if (status === "approved") trackCompletePayment();
+  }, [status]);
 
   const minutes = Math.floor(seconds / 60).toString().padStart(2, "0");
   const secs = (seconds % 60).toString().padStart(2, "0");
