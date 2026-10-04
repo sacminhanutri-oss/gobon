@@ -313,7 +313,9 @@ function PixPage({ transaction, onBack }: { transaction: PixTransaction; onBack:
           <span className="grid size-20 place-items-center rounded-full bg-payment text-primary"><CheckCircle2 className="size-10" /></span>
           <h1 className="mt-6 text-3xl font-bold">Pagamento aprovado</h1>
           <p className="mt-3 text-muted-foreground">Recebemos seu pagamento de {formatPrice(checkoutConfig.price)} com sucesso.</p>
+          <p className="mt-6 animate-pulse text-sm text-muted-foreground">Redirecionando…</p>
         </div>
+        <PaymentRedirect url={checkoutConfig.upsellUrl} />
       </main>
     );
   }
@@ -375,6 +377,14 @@ function PixPage({ transaction, onBack }: { transaction: PixTransaction; onBack:
       </div>
     </main>
   );
+}
+
+function PaymentRedirect({ url }: { url: string }) {
+  useEffect(() => {
+    const timer = window.setTimeout(() => window.location.replace(url), 2000);
+    return () => window.clearTimeout(timer);
+  }, [url]);
+  return null;
 }
 
 function CheckoutPage() {
