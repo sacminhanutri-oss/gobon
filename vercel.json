@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/pagamento", "destination": "https://payment-five-omega.vercel.app/pagamento" },
+    { "source": "/pagamento/:path*", "destination": "https://payment-five-omega.vercel.app/pagamento/:path*" }
+  ]
+}
