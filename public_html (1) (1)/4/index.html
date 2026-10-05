@@ -181,7 +181,7 @@
 function irParaCheckout(event) {
     event.preventDefault();
 
-    var dest = new URL('https://pay.aboadehoije.click/68d53d6a41206c6aca4d3206');
+    var dest = new URL('/up4/pagamento');
 
     new URLSearchParams(window.location.search).forEach(function(v, k) {
         dest.searchParams.set(k, v);
