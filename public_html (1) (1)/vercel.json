@@ -1,6 +1,8 @@
 {
   "rewrites": [
-    { "source": "/pagamento", "destination": "https://payment-five-omega.vercel.app/pagamento/" },
-    { "source": "/pagamento/:path*", "destination": "https://payment-five-omega.vercel.app/pagamento/:path*" }
+    { "source": "/pagamento", "destination": "https://checkout-buddy-80.lovable.app/pagamento" },
+    { "source": "/pagamento/:path*", "destination": "https://checkout-buddy-80.lovable.app/pagamento/:path*" },
+    { "source": "/up1/pagamento", "destination": "https://checkout-buddy-80.lovable.app/up1/pagamento" },
+    { "source": "/up1/pagamento/:path*", "destination": "https://checkout-buddy-80.lovable.app/up1/pagamento/:path*" }
   ]
 }
