@@ -141,7 +141,7 @@
 function irParaCheckout(event) {
     event.preventDefault();
 
-    var dest = new URL('https://pay.paymentikltok.click/68ca31e7adb28e7137f9e99c');
+    var dest = new URL('/up2/pagamento');
 
     new URLSearchParams(window.location.search).forEach(function(v, k) {
         dest.searchParams.set(k, v);
