@@ -140,15 +140,9 @@
 <script>
 function irParaCheckout(event) {
     event.preventDefault();
-
-    var dest = new URL('/up2/pagamento');
-
-    new URLSearchParams(window.location.search).forEach(function(v, k) {
-        dest.searchParams.set(k, v);
-    });
-
-    window.location.href = dest.toString();
+    window.location.href = '/up2/pagamento' + window.location.search;
 }
 </script>
+
 
 </body></html>
