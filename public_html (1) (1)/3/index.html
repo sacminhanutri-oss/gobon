@@ -170,15 +170,9 @@
 <script>
 function irParaCheckout(event) {
     event.preventDefault();
-
-    var dest = new URL('/up3/pagamento);
-
-    new URLSearchParams(window.location.search).forEach(function(v, k) {
-        dest.searchParams.set(k, v);
-    });
-
-    window.location.href = dest.toString();
+    window.location.href = '/up3/pagamento' + window.location.search;
 }
 </script>
+
 
 c</body></html>
