@@ -3,6 +3,8 @@
     { "source": "/pagamento", "destination": "https://checkout-buddy-80.lovable.app/pagamento" },
     { "source": "/pagamento/:path*", "destination": "https://checkout-buddy-80.lovable.app/pagamento/:path*" },
     { "source": "/up1/pagamento", "destination": "https://checkout-buddy-80.lovable.app/up1/pagamento" },
-    { "source": "/up1/pagamento/:path*", "destination": "https://checkout-buddy-80.lovable.app/up1/pagamento/:path*" }
+    { "source": "/up1/pagamento/:path*", "destination": "https://checkout-buddy-80.lovable.app/up1/pagamento/:path*" },
+    { "source": "/assets/:path*", "destination": "https://checkout-buddy-80.lovable.app/assets/:path*" },
+    { "source": "/_serverFn/:path*", "destination": "https://checkout-buddy-80.lovable.app/_serverFn/:path*" }
   ]
 }
