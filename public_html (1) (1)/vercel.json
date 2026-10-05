@@ -7,9 +7,10 @@
     { "source": "/up2/pagamento", "destination": "https://checkout-buddy-80.lovable.app/up2/pagamento" },
     { "source": "/up2/pagamento/:path*", "destination": "https://checkout-buddy-80.lovable.app/up2/pagamento/:path*" },
     { "source": "/up3/pagamento", "destination": "https://checkout-buddy-80.lovable.app/up3/pagamento" },
-{ "source": "/up3/pagamento/:path*", "destination": "https://checkout-buddy-80.lovable.app/up3/pagamento/:path*" }
+    { "source": "/up3/pagamento/:path*", "destination": "https://checkout-buddy-80.lovable.app/up3/pagamento/:path*" },
     { "source": "/up4/pagamento", "destination": "https://checkout-buddy-80.lovable.app/up4/pagamento" },
-{ "source": "/up4/pagamento/:path*", "destination": "https://checkout-buddy-80.lovable.app/up4/pagamento/:path*" }
+    { "source": "/up4/pagamento/:path*", "destination": "https://checkout-buddy-80.lovable.app/up4/pagamento/:path*" },
+    { "source": "/oferta-final", "destination": "https://checkout-buddy-80.lovable.app/oferta-final" },
     { "source": "/assets/:path*", "destination": "https://checkout-buddy-80.lovable.app/assets/:path*" },
     { "source": "/_serverFn/:path*", "destination": "https://checkout-buddy-80.lovable.app/_serverFn/:path*" }
   ]
