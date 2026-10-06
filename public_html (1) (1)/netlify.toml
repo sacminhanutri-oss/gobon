@@ -1,0 +1,71 @@
+[[redirects]]
+  from = "/pagamento"
+  to = "https://checkout-buddy-80.lovable.app/pagamento"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/pagamento/*"
+  to = "https://checkout-buddy-80.lovable.app/pagamento/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/up1/pagamento"
+  to = "https://checkout-buddy-80.lovable.app/up1/pagamento"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/up1/pagamento/*"
+  to = "https://checkout-buddy-80.lovable.app/up1/pagamento/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/up2/pagamento"
+  to = "https://checkout-buddy-80.lovable.app/up2/pagamento"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/up2/pagamento/*"
+  to = "https://checkout-buddy-80.lovable.app/up2/pagamento/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/up3/pagamento"
+  to = "https://checkout-buddy-80.lovable.app/up3/pagamento"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/up3/pagamento/*"
+  to = "https://checkout-buddy-80.lovable.app/up3/pagamento/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/up4/pagamento"
+  to = "https://checkout-buddy-80.lovable.app/up4/pagamento"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/up4/pagamento/*"
+  to = "https://checkout-buddy-80.lovable.app/up4/pagamento/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/oferta-final"
+  to = "https://checkout-buddy-80.lovable.app/oferta-final"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/assets/*"
+  to = "https://checkout-buddy-80.lovable.app/assets/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/_serverFn/*"
+  to = "https://checkout-buddy-80.lovable.app/_serverFn/:splat"
+  status = 200
+  force = true
