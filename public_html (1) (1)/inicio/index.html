@@ -1027,9 +1027,9 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     document.getElementById('confirmationScreen').classList.add('active');
 
     redirectTimer = setTimeout(() => {
-      const params = window.location.search;
-      window.location.href = 'index.html' + params;
-    }, 1700);
+  const params = window.location.search;
+  window.location.href = '/' + params;
+}, 1700);
   }
 
   document.getElementById('captchaInput').addEventListener('input', function () {
