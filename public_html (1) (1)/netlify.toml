@@ -59,6 +59,18 @@
   status = 200
   force = true
 
+  [[redirects]]
+  from = "/up5"
+  to = "https://checkout-buddy-80.lovable.app/up5"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/up5/*"
+  to = "https://checkout-buddy-80.lovable.app/up5/:splat"
+  status = 200
+  force = true
+
+
 [[redirects]]
   from = "/assets/*"
   to = "https://checkout-buddy-80.lovable.app/assets/:splat"
